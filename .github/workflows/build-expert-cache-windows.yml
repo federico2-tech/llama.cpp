@@ -27,7 +27,7 @@ jobs:
         shell: cmd
         run: |
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
-          cmake -S . -B build -G "Ninja Multi-Config" -DGGML_CUDA=ON -DGGML_NATIVE=OFF -DGGML_CUDA_CUB_3DOT2=ON
+          cmake -S . -B build -G "Ninja Multi-Config" -DGGML_CUDA=ON -DGGML_NATIVE=OFF -DGGML_CUDA_CUB_3DOT2=ON -DCMAKE_CUDA_ARCHITECTURES=89
           cmake --build build --config Release -j 15 --target llama-server llama-cli llama-bench test-expert-pool
 
       - name: Package
@@ -41,3 +41,4 @@ jobs:
           name: llama-cpp-expert-cache-win-cuda124
           path: llama-cpp-expert-cache-win-cuda124.zip
           retention-days: 7
+
